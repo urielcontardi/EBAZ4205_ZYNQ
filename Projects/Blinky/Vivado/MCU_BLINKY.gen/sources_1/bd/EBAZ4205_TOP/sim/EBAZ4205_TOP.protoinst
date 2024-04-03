@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"EBAZ4205_TOP": {
+			"proto_instances": {
+			}
+		}
+	}
+}

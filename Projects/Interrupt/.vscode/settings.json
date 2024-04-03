@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "xgpiops.h": "c",
+        "xparameters.h": "c",
+        "xbasic_types.h": "c"
+    }
+}

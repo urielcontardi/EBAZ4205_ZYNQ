@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="EBAZ4205_App" location="C:/Users/contardii/Desktop/EBAZ4205_ZYNQ/Projects/MCU_BLINKY/PS/EBAZ4205_App" platform="C:/Users/contardii/Desktop/EBAZ4205_ZYNQ/Projects/MCU_BLINKY/PS/EBAZ4205_Platform/export/EBAZ4205_Platform/EBAZ4205_Platform.xpfm" platformUID="xilinx:ebaz4205::0.0(custom)" systemProject="EBAZ4205_App_system" sysConfig="EBAZ4205_Platform" runtime="cpp" cpu="standalone_ps7_cortexa9_0" cpuInstance="ps7_cortexa9_0" os="standalone" mssSignature="052ca672d13829df0910dc1173cd09c8">
+  <configuration name="Debug" id="xilinx.gnu.armv7.exe.debug.61992914">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+    <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <configuration name="Release" id="xilinx.gnu.armv7.exe.release.505769304" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <template appTemplateName="hello_world"/>
+</sdkproject:SdkProject>
