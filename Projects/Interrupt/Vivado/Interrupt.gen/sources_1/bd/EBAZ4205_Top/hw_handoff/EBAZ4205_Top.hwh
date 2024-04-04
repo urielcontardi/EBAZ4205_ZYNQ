@@ -1,9 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Apr  3 15:24:20 2024" VIVADOVERSION="2021.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Apr  4 08:30:32 2024" VIVADOVERSION="2021.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="miner.ebang.com.cn:ebaz4205:part0:1.0" DEVICE="7z010" NAME="EBAZ4205_Top" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
   <EXTERNALPORTS>
+    <PORT DIR="O" NAME="greenLED" SIGIS="undef" SIGNAME="blinky_0_led">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="blinky_0" PORT="led"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="0" NAME="redLED" RIGHT="0" SIGIS="undef" SIGNAME="processing_system7_0_GPIO_O">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="processing_system7_0" PORT="GPIO_O"/>
+      </CONNECTIONS>
+    </PORT>
     <PORT DIR="IO" NAME="DDR_cas_n" SIGIS="undef" SIGNAME="processing_system7_0_DDR_CAS_n">
       <CONNECTIONS>
         <CONNECTION INSTANCE="processing_system7_0" PORT="DDR_CAS_n"/>
@@ -107,16 +117,6 @@
     <PORT DIR="IO" NAME="FIXED_IO_ps_porb" SIGIS="undef" SIGNAME="processing_system7_0_PS_PORB">
       <CONNECTIONS>
         <CONNECTION INSTANCE="processing_system7_0" PORT="PS_PORB"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="greenLED" SIGIS="undef" SIGNAME="blinky_0_led">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="blinky_0" PORT="led"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" LEFT="0" NAME="redLED" RIGHT="0" SIGIS="undef" SIGNAME="processing_system7_0_GPIO_O">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="processing_system7_0" PORT="GPIO_O"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>

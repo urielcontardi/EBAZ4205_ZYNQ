@@ -6,7 +6,7 @@
       "gen_directory": "../../../../Interrupt.gen/sources_1/bd/EBAZ4205_Top",
       "name": "EBAZ4205_Top",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
-      "synth_flow_mode": "Hierarchical",
+      "synth_flow_mode": "None",
       "tool_version": "2021.2",
       "validated": "true"
     },

@@ -51,7 +51,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 static void interruptHandler(void *CallBackRef);
 static void _gpioInit(void);
-static void _interruptInit();
+static void _interruptInit(void);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                                                            //
@@ -60,10 +60,11 @@ static void _interruptInit();
 ////////////////////////////////////////////////////////////////////////////////
 
 // GPIO Struct Variable
-XGpioPs Gpio;
+static XGpioPs Gpio;
+int actualValue;
 
 // Interrupt Struct Variable
-XScuGic Gic;
+static XScuGic Gic;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -73,10 +74,11 @@ XScuGic Gic;
 ////////////////////////////////////////////////////////////////////////////////
 int main()
 {
+    init_platform();
     _gpioInit();
     _interruptInit();
 
-    XGpioPs_WritePin(&Gpio, EMIO_0,1);
+    actualValue = 0;
 
     while(1)
     {
@@ -97,7 +99,8 @@ int main()
 // ------------------------------------------------------------------
 static void interruptHandler(void *CallBackRef)
 {
-    XGpioPs_WritePin(&Gpio, EMIO_0, !XGpioPs_ReadPin(&Gpio, EMIO_0));
+    actualValue = !actualValue;
+    XGpioPs_WritePin(&Gpio, EMIO_0, actualValue);
 }
 
 static void _gpioInit(void)
@@ -113,28 +116,33 @@ static void _gpioInit(void)
     XGpioPs_SetOutputEnablePin(&Gpio, EMIO_0, 1);
 }
 
-static void _interruptInit()
+static void _interruptInit() 
 {
-    XScuGic_Config *Gic_Config; 
 
-    // Initialize the Gic driver
-	Gic_Config = XScuGic_LookupConfig(XPAR_PS7_SCUGIC_0_DEVICE_ID);
-    XScuGic_CfgInitialize(&Gic, Gic_Config, Gic_Config->CpuBaseAddress);
+    XScuGic *Gic_ptr = &Gic;
+    XScuGic_Config *Gic_Config;
 
-    // Set the priority of IRQ_F2P[0:0] to 0xA0 (highest 0xF8, lowest 0x00) and a trigger for a rising edge 0x3.
-    XScuGic_SetPriorityTriggerType(&Gic, INTC_INTERRUPT_ID_0, 0xA0, 0x3);
-    
-    // Connect the interrupt service routine isr0 to the interrupt controller
-    XScuGic_Connect(&Gic, INTC_INTERRUPT_ID_0, (Xil_ExceptionHandler)interruptHandler, (void *)&Gic);
+    // Get config for interrupt controller
+    Gic_Config = XScuGic_LookupConfig(XPAR_PS7_SCUGIC_0_DEVICE_ID);
+
+    // Initialize the interrupt controller driver
+    XScuGic_CfgInitialize(Gic_ptr, Gic_Config, Gic_Config->CpuBaseAddress);
+
+    // set the priority of IRQ_F2P[0:0] to 0xA0 (highest 0xF8, lowest 0x00) and a trigger for a rising edge 0x3.
+    XScuGic_SetPriorityTriggerType(Gic_ptr, INTC_INTERRUPT_ID_0, 0xA0, 0x3);
+
+    // connect the interrupt service routine isr0 to the interrupt controller
+    XScuGic_Connect(Gic_ptr, INTC_INTERRUPT_ID_0, (Xil_ExceptionHandler)interruptHandler, (void *)&Gic);
 
     // Enable interrupts for IRQ_F2P[0:0]
-    XScuGic_Enable(&Gic, INTC_INTERRUPT_ID_0);
-       
+    XScuGic_Enable(Gic_ptr, INTC_INTERRUPT_ID_0);
+
     // Initialize the exception table and register the interrupt controller handler with the exception table
     Xil_ExceptionInit();
-    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT, (Xil_ExceptionHandler)XScuGic_InterruptHandler, &Gic);
 
-    // Enable non-critical exceptions
+    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT, (Xil_ExceptionHandler)XScuGic_InterruptHandler, Gic_ptr);
+
+    // enable non-critical exceptions
     Xil_ExceptionEnable();
 
 }

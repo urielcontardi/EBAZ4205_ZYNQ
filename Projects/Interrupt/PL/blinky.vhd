@@ -45,8 +45,7 @@ End blinky;
 --------------------------------------------------------------------------
 Architecture Behavioral of blinky is
 
-    signal counter : unsigned(21 downto 0);
-
+    signal counter : integer;
     type state is (LED_ON, LED_OFF);
     signal s : state;
 
@@ -62,13 +61,13 @@ Begin
                     led <= '0';
             end case;
 
-            if (counter >= 3000000) then
+            if (counter >= 40000000) then
                 if (s = LED_ON) then
                     s <= LED_OFF;
                 else
                     s <= LED_ON;
                 end if;
-                counter <= to_unsigned(0, 22);
+                counter <= 0;
             else
                 counter <= counter + 1;
             end if;

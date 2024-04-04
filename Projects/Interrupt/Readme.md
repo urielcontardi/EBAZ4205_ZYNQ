@@ -1,25 +1,11 @@
-# Blinky Project
+# Interrupt Project
 
-The objective of this project is to start using Zynq's PS, the system developed is to instantiate the PS (ZYNQ7 Processing System) configured with Vitis with a blinky.
+The objective of this project is to measure the time it takes for the SoC to process an interrupt.
 
-Furthermore, a blinky was developed in RTL that uses the PS clock for its operation.
+In this example, the PL has a blinky that feeds the IRQ input of the PS, and we also externalized it on the greenLed pin. The PS's C code was developed so that on the rising edge of a pulse at the IRQ input, an EMIO (connected to the redLED) performs a toggle.
 
-This way, in the end we have two working LEDs, one being controlled by the PS and the other by the PL.
+![Design](misc/Interrupt.png)
 
-We are using EMIO 0 to acess the Led (led is connected in PL)
+The time was measured using an oscilloscope. The blue waveform corresponds to the greenLed pin, and the orange waveform corresponds to the redLED pin
 
-![Design](misc/Blinky.png)
-
-
----
-# Vitis Workflow
-
-![Design](misc/Vitis_workflow.png)
-
-
-1 - Platform Project: 
-    - Provides hardware information and software environment setting
-    - Domain: provides runtime for applications, such as operating system or BSP
-
-2 - System Project:
-    - Contains one or more applications that run at the same time
+![Time Measure](misc/measure.jpg)
