@@ -8,4 +8,4 @@ In this example, the PL has a blinky that feeds the IRQ input of the PS, and we 
 
 The time was measured using an oscilloscope. The blue waveform corresponds to the greenLed pin, and the orange waveform corresponds to the redLED pin
 
-![Time Measure](misc/measure.jpg)
+![Time Measure](misc/measure.png)
