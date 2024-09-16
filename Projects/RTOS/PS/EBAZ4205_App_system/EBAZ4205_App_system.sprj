@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<systemproject:SystemProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" xmlns:systemproject="http://www.xilinx.com/systemproject" name="EBAZ4205_App_system" platform="D:/Projetos/EBAZ4205_ZYNQ/Projects/RTOS/PS/EBAZ4205_Platform/export/EBAZ4205_Platform/EBAZ4205_Platform.xpfm" platformUID="xilinx:ebaz4205::0.0(custom)" sysConfig="EBAZ4205_Platform" runtime="cpp" rootFSLocation="" linuxImage="" sysroot="">
+  <configuration name="Debug" id="com.xilinx.sdx.system.managedbuilder.debugConfiguration.728385599">
+    <configBuildOptions xsi:type="systemproject:SystemOptions">
+      <applications name="EBAZ4205_App" domainName="EBAZ4205_App" domainPrettyName="EBAZ4205_App" appBuildConfig="Debug"/>
+      <options xsi:type="sdkproject:SdkOptions" generateSdCard="true"/>
+    </configBuildOptions>
+  </configuration>
+  <configuration name="Release" id="com.xilinx.sdx.system.managedbuilder.releaseConfiguration.1931151204">
+    <configBuildOptions xsi:type="systemproject:SystemOptions">
+      <applications name="EBAZ4205_App" domainName="EBAZ4205_App" domainPrettyName="EBAZ4205_App" appBuildConfig="Release"/>
+      <options xsi:type="sdkproject:SdkOptions" generateSdCard="true"/>
+    </configBuildOptions>
+  </configuration>
+</systemproject:SystemProject>

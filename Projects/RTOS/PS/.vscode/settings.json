@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "xparameters.h": "c",
+        "xgpiops.h": "c",
+        "timers.h": "c"
+    }
+}
